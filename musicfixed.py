@@ -1,4 +1,5 @@
 from __future__ import annotations
+from pyrogram import filters
 
 import asyncio
 import contextlib
@@ -348,15 +349,15 @@ class MusicBot:
         self.register_handlers()
 
     def register_handlers(self) -> None:
-        self.app.add_handler(MessageHandler(self.start_handler, filters.command("start") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.help_handler, filters.command("help") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.play_handler, filters.command("play") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.lyrics_handler, filters.command("lyrics") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.lock_handler, filters.command("lock") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.unlock_handler, filters.command("unlock") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.admin_handler, filters.command("admin") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.ban_handler, filters.command("ban") & CHAT_FILTER))
-        self.app.add_handler(MessageHandler(self.broadcast_handler, filters.command("broadcast") & CHAT_FILTER))
+        self.app.add_handler(MessageHandler(self.start_handler, filters.command(["start"])))
+        self.app.add_handler(MessageHandler(self.help_handler, filters.command(["help"])))
+        self.app.add_handler(MessageHandler(self.play_handler, filters.command(["play"])))
+        self.app.add_handler(MessageHandler(self.lyrics_handler, filters.command(["lyrics"])))
+        self.app.add_handler(MessageHandler(self.lock_handler, filters.command(["lock"])))
+        self.app.add_handler(MessageHandler(self.unlock_handler, filters.command(["unlock"])))
+        self.app.add_handler(MessageHandler(self.admin_handler, filters.command(["admin"])))
+        self.app.add_handler(MessageHandler(self.ban_handler, filters.command(["ban"])))
+        self.app.add_handler(MessageHandler(self.broadcast_handler, filters.command(["broadcast"])))
         self.app.add_handler(CallbackQueryHandler(self.callback_handler))
 
     async def run(self) -> None:
